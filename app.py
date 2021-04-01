@@ -8,12 +8,13 @@ products = soup.findAll(class_='product')
 
 with open('leadersElectric.csv','w') as csv_file:
     csv_writer=writer(csv_file)
-    headers = ['Title','image link',]
+    headers = ['Title','price','image link']
 
     for item in products:
         title =item.find(class_='card-title').get_text().replace('\n','')
-        print(title)
+        # print(title)
         price = item.find(class_="price-section price-section--withTax").find(class_='price price--withTax price--main').get_text().replace('\n','')
-        print(price)
+        # print(price)
         image = item.find(class_='card-img-container').find('img')['src']
-        print(image)
+        # print(image)
+        csv_writer.writerow([title,price,image])
